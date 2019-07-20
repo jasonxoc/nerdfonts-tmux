@@ -42,5 +42,11 @@ Jason Cox<jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
 .. _tmux: https://github.com/tmux/tmux
 .. _nerdfonts: https://www.nerdfonts.com/
 
+Image
+-----
+
+
+.. image:: https://github.com/jasonxoc/nerdfonts-tmux/raw/master/example_img/nerdfonts-tmux.png
+
 
 
