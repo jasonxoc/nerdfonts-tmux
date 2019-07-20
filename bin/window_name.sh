@@ -197,13 +197,13 @@ if [[ ! -z $feature_db ]]; then
         icons="${db_icon} $icons"
     fi
     if [[ $window_name == *"solr"* ]]; then
-        icons="{$icons} ${solr_icon}"
+        icons="${icons} ${solr_icon}"
     fi
     if [[ $window_name == *"redis"* ]]; then
-        icons="{$icons} ${redis_icon}"
+        icons="${icons} ${redis_icon}"
     fi
     if [[ $window_name == *"mongo"* ]]; then
-        icons="{$icons} ${mongo_icon}"
+        icons="${icons} ${mongo_icon}"
     fi
 fi
 
@@ -241,28 +241,28 @@ fi
 
 # Languages:
 if [[ $window_name == *"nvm"* ]] || [[ $window_name == *"node" ]]; then
-    icons="{$icons} ${node_icon}"
+    icons="${icons} ${node_icon}"
 fi
 if [[ $window_name == *"js"* ]] || [[ $window_name == *"javascript"* ]]; then
-    icons="{$icons} ${js_icon}"
+    icons="${icons} ${js_icon}"
 fi
 
 if [[ $window_name == *"java"* ]]; then
-    icons="{$icons} ${java_icon}"
+    icons="${icons} ${java_icon}"
 fi
 
 if [[ $window_name == *"ruby"* ]]; then
-    icons="{$icons} ${ruby_icon}"
+    icons="${icons} ${ruby_icon}"
 fi
 if [[ $window_name == *"rails" ]]; then
-    icons="{$icons} ${ruby_icon}"
+    icons="${icons} ${ruby_icon}"
 fi
 
 if [[ $window_name == *"php"* ]]; then
-    icons="{$icons} ${php_icon}"
+    icons="${icons} ${php_icon}"
 fi
 if [[ $window_name == *"css"* ]] || [[ $window_name == *"style" ]]; then
-    icons="{$icons} ${css_icon}"
+    icons="${icons} ${css_icon}"
 fi
 
 # MVC Coding
