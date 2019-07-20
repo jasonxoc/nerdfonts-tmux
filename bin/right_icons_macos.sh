@@ -2,39 +2,50 @@
 # Orginal Author: Jason Cox <jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
 # Date: 7/11/2019
 # Notes: This is made for me, uses macos commands
+#      : cat /tmp/wifi_ssid to see your wifi ssid
 #
+#  
 # battery_icons:            
 # plug_icons: ﮣ ﮣ
-#
-#
-# Headphone Icons:    
-#
-# Key Icon: 
+# Headphone Icons:        
+# Key Icon:    
 # Airpod box icon: ﯀  
 #
+# stat -t +%s /tmp/tmux_audio.txt
+# 16777221 17652346 -rw-r--r-- 1 user group 0 1343 "+1563656887" "+1563656874" "+1563656874" "+1563561273" 4096 8 0 /tmp/tmux_audio.txt
+#    ??       ??                                         mod?          upd?        upd?         create?
 ##
+
+work_wifi_icon=""
+home_wifi_icon=""
+
+work_wifi_ssid="Work Wifi SSID"
+home_wifi_ssid="Home Wifi SSID"
+
+feature_airpods=1
+
+audio_txt_file=/tmp/tmux_audio.txt
+batt_txt_file=/tmp/tmux_batt.txt
 
 if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport ]; then
     airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
     wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk '{print $2}')"
     batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
     audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
-elif [ ! -z $(which nmcli) ]; then
+fi
+if [ -f $(which nmcli) ]; then
     airport=$(which nmcli)
     wifi_ssid="$(${airport} -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2)"
-    batt_txt_mod=""
-    audio_txt_mod=""
+    batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
+    audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
 fi
+
 now="$(date +%s)"
 batt_txt_sec_mod="$(expr $now - $batt_txt_mod)"
 audio_txt_sec_mod="$(expr $now - $audio_txt_mod)"
-audio_txt_file=/tmp/tmux_audio.txt
-batt_txt_file=/tmp/tmux_batt.txt
 refresh=10
 
-vpn_icon=""
 on_vpn="$(ifconfig | grep 'utun1')"
-
 if [[ "x" == "${on_vpn}x" ]]; then
     vpn_icon=""
 else
@@ -112,18 +123,16 @@ network_icon=" "
 if [[ "${wifi_ssid}x" == "x" ]]; then
     network_icon=""
 fi
-#  
-#wifi_ssid="Voice"
+
+
+
 echo $wifi_ssid > /tmp/wifi_ssid
-if [[ $wifi_ssid == "Voice" ]]; then
-    network_icon="$network_icon "
-fi
-if [[ $wifi_ssid == "Connectio.us" ]]; then
-    network_icon="$network_icon "
+if [[ $wifi_ssid == $wofk_wifi_ssid ]]; then
+    network_icon="${network_icon} ${work_wifi_icon}"
 fi
 
-if [[ $wifi_ssid == "Jasons" ]]; then
-    network_icon="$network_icon "
+if [[ $wifi_ssid == $home_wifi_ssid ]]; then
+    network_icon="${network_icon} ${home_wifi_icon}"
 fi
 
 chats_icons=""
@@ -131,23 +140,16 @@ if [ $unread_chats -gt 0 ]; then
     chats_icons=$unread_msg_icon
 fi
 
-# ioreg
-# "BTTTYName" = "JasonsAirPodsKeys
-
-#    
-# 
-#   
-#   
 headphone_icons=""
-
 output_device="$(cat $audio_txt_file |grep 'Default Output Device' -B3 |grep -v 'Default Output' |grep ':')"
 if [[ $output_device == *'Pods'* ]]; then
-    if [[ $output_device == *'Keys'* ]]; then
-        headphone_icons="  "
-    fi
-    if [[ $output_device == *'Lose'* ]]; then
-        headphone_icons="  "
-    fi
+    headphone_icons=" "
+    #if [[ $output_device == *'Keys'* ]]; then
+    #    headphone_icons="  "
+    #fi
+    #if [[ $output_device == *'Lose'* ]]; then
+    #    headphone_icons="  "
+    #if
 fi
 
 
