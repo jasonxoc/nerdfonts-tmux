@@ -17,7 +17,10 @@ tmux conf| tmux conf
 I just open up the nerdfonts_ website and search for glyphs to style tmux windows and sessions
 
 
-These are my personalized scripts. I use macos, so all of the right_icons_macos.sh are tested using macos 10.14.4
+These are my personalized scripts.
+I use macos, so all of the right_icons_macos.sh are tested using macos 10.14.4
+If you have a distro, add it in bin/right_icons_platform.sh and I'll merge it.
+
 
 Setup
 -----
@@ -41,6 +44,27 @@ Jason Cox<jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
 
 .. _tmux: https://github.com/tmux/tmux
 .. _nerdfonts: https://www.nerdfonts.com/
+
+
+Blink-SH Nerdfont
+-----------------
+
+Blink SH is a terminal emulator for ios and it supports uploading fonts. I wasn't able to find a
+base64 encoded css mono nerdfont patched font that worked with blinksh. 
+
+It ended up being hyper irritating.
+
+So for your convienience:
+
+Literation Mono Nerd Font:
+font/Literation\ Mono\ Nerd\ Font\ Complete\ Mono.ttf
+
+Base64 encoded in CSS:
+blink-sh/LiterationMonoNerdFont.css
+
+
+
+
 
 Image
 -----
