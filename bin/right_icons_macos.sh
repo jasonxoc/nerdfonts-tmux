@@ -96,7 +96,7 @@ elif [[ $percentage -lt 91 ]]; then
     batt_icon=""
 elif [[ $percentage -lt 99 ]]; then
     batt_icon=""
-elif [[ $percentage -gt 99 ]]; then
+elif [[ $percentage -gt 99 ]] || [[ $percentage -eq 99 ]]; then
     batt_icon=""
 fi
 
@@ -116,7 +116,7 @@ else
         batt_icon=""
     elif [[ $percentage -lt 99 ]]; then
         batt_icon=""
-    elif [[ $percentage -gt 99 ]]; then
+    elif [[ $percentage -gt 99 ]] || [[ $percentage -eq 99 ]]; then
         batt_icon="ﴅ"
     fi
 
