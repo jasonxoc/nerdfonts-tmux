@@ -1,9 +1,13 @@
 #!/usr/bin/env sh
+
+# # # # # # # # # #
 # Orginal Author: Jason Cox <jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
 # Date: 7/11/2019
-# Notes: This is made for me, uses macos commands
-#      : cat /tmp/wifi_ssid to see your wifi ssid
+# Rep: https://github.com/jasonxoc/nerdfonts-tmux
 #
+# Notes: This is made for me, uses macos commands
+#
+# # # # # # # # # #
 #  
 # battery_icons:            
 # plug_icons: ﮣ ﮣ

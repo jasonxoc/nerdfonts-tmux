@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
-#chars_per_line="$(tput cols)"
-#char_thresh=145
+
+# # # # # # # # # #
+# Orginal Author: Jason Cox <jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
+# Date: 7/11/2019
+# Rep: https://github.com/jasonxoc/nerdfonts-tmux
 #
-#if [ $chars_per_line -lt $char_thresh ]; then
+# Notes: This is made for me, uses macos commands
 #
-#else
-#
-#fi
+# # # # # # # # # #
 
 session_name="$1"
-# term:    ﬑  
 sh_icon=""
 ssh_icon=""
 vim_icon=""

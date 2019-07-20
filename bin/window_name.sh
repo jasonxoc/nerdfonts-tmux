@@ -1,13 +1,15 @@
 #!/usr/bin/env sh
 
-# This is how to check screen width
-#cars_per_line="$(tput cols)"
-#char_thresh=145
-#if [ $chars_per_line -lt $char_thresh ]; then
+# # # # # # # # # #
+# Orginal Author: Jason Cox <jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
+# Date: 7/11/2019
+# Rep: https://github.com/jasonxoc/nerdfonts-tmux
 #
-#else
+# Notes: This is made for me, uses macos commands
 #
-#fi
+# # # # # # # # # #
+
+
 feature_db=1
 feature_mvc=1
 feature_force=1
