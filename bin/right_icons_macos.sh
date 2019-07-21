@@ -18,6 +18,15 @@
 # stat -t +%s /tmp/tmux_audio.txt
 # 16777221 17652346 -rw-r--r-- 1 user group 0 1343 "+1563656887" "+1563656874" "+1563656874" "+1563561273" 4096 8 0 /tmp/tmux_audio.txt
 #    ??       ??                                         mod?          upd?        upd?         create?
+#
+# This could work for linux?
+#if [ -f $(which nmcli) ]; then
+#    airport=$(which nmcli)
+#    wifi_ssid="$(${airport} -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2)"
+#    batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
+#    audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
+#fi
+#
 ##
 
 work_wifi_icon=""
@@ -34,12 +43,6 @@ batt_txt_file=/tmp/tmux_batt.txt
 if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport ]; then
     airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
     wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk -F':' '{print $2}')"
-    batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
-    audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
-fi
-if [ -f $(which nmcli) ]; then
-    airport=$(which nmcli)
-    wifi_ssid="$(${airport} -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2)"
     batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
     audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
 fi
