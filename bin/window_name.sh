@@ -155,8 +155,6 @@ rightarrow_icon=""
 leftarrow_icon=""
 evernote_icon=""
 
-
-
 if [[ $active_window -gt 0 ]]; then
     sh_icon=$sh_icon_active
     ssh_icon=$ssh_icon_active

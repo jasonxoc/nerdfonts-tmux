@@ -21,6 +21,6 @@ if [ -f ~/.tmux_session_names ]; then
     done < ~/.tmux_session_names
 fi
 if [[ "${return_string}x" == "x" ]]; then
-    return_string="${session_names}"
+    return_string="${session_name}"
 fi
 echo "$return_string"
