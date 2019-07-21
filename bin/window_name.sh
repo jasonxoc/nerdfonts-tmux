@@ -172,14 +172,14 @@ fi
 
 # Python Environments
 if [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]]; then
+    vim_icon=${vim_box_icon}
     icons="$python_icon $icons"
-    vim_icon=$vim_box_icon
 fi
 
 
 # SSH
-if [[ $window_name == *"ssh"* ]] || [[ $window_name == *" sh" ]]; then
-    vim_icon=""
+if [[ $window_name == *"ssh"* ]]; then
+    vim_icon=${vim_box_icon}
     icons="${ssh_icon}"
     if [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]]; then
         icons="${python_icon} ${ssh_icon}"
