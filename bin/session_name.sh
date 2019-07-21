@@ -14,9 +14,9 @@ return_string=$session_name
 if [ -f ~/.tmux_session_names ]; then
     while read session_row;
     do
-        test_string="$(echo $session_row | awk -F',' '{print $1}')"
+        test_string="$(echo $session_row | awk -F'|' '{print $1}')"
         if [[ $session_name == $test_string ]]; then
-            return_string="$(echo $session_row | awk -F',' '{print $2}')"
+            return_string="$(echo $session_row | awk -F'|' '{print $2}')"
         fi
     done < ~/.tmux_session_names
 fi
