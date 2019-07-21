@@ -41,6 +41,11 @@ I don't think you need to for this...
 * If you have more than one pair of airpods then this could help.
   At the bottom of right_icons.sh right_icons_macos.sh there's a string search
   for your airpod name and if it matches it puts an icon next to the headphone glyph
+* cp tmux_session_names ~/.tmux_session_names (if you want to easily style your
+  session names)
+* cp tmux_window_names ~/.tmux_window_names (this completely replaces the window
+  name with whatever you put in here. Meaning it will ignore the other substring
+  matches that window_names.sh does)
 
 
 Let me know what you come up with
