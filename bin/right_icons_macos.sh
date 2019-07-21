@@ -149,10 +149,9 @@ if [[ $output_device == *'Pods'* ]]; then
     headphone_icons=" "
     #if [[ $output_device == *'Keys'* ]]; then
     #    headphone_icons="  "
-    #fi
-    #if [[ $output_device == *'Lose'* ]]; then
+    #elif [[ $output_device == *'Lose'* ]]; then
     #    headphone_icons="  "
-    #if
+    #fi
 fi
 
 
