@@ -66,11 +66,11 @@ base64 encoded css mono nerdfont patched font that worked with blinksh.
 
 It ended up being hyper irritating. So for your convienience:
 
-Literation Mono Nerd Font: LiterationTTF_
-font/Literation\ Mono\ Nerd\ Font\ Complete\ Mono.ttf
+* Literation Mono Nerd Font: LiterationTTF_
+-font/Literation\ Mono\ Nerd\ Font\ Complete\ Mono.ttf
 
-Base64 encoded in CSS: LiterationCss_
-blink-sh/LiterationMonoNerdFont.css
+* BlinkSH supported Nerdfont base64 encoded in CSS: LiterationCss_
+- blink-sh/LiterationMonoNerdFont.css
 
 .. _LiterationCss: https://raw.githubusercontent.com/jasonxoc/nerdfonts-tmux/master/blink-sh/LiterationMonoNerdFont.css
 .. _LiterationTTF: https://github.com/jasonxoc/nerdfonts-tmux/blob/master/fonts/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true
