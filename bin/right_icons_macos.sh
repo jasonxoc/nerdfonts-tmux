@@ -56,7 +56,7 @@ on_vpn="$(ifconfig | grep 'utun1')"
 if [[ "x" == "${on_vpn}x" ]]; then
     vpn_icon=""
 else
-    vpn_icon=" "
+    vpn_icon=" "
 fi
 
 function update_batt_txt {
