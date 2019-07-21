@@ -33,14 +33,15 @@ I don't think you need to for this...
 * Copy the files from bin/ to ~/bin/
 * Make sure ~/bin is in your $PATH : export PATH=$PATH:~/bin
 * Combine your existing ~/.tmux.conf with the one here
-  * The status-left, status-right and window-status items call the scripts
-  * Change them to whereever you put the shell scripts
+  The status-left, status-right and window-status items call the scripts
+  Change them to whereever you put the shell scripts
 * Update ~/bin/right_icons_macos.sh
-  * Change work_wifi_ssid and home_wifi_ssid to your work and home wifi name
-  * The script spits out your ssid to /tmp/wifi_ssid
+  Change work_wifi_ssid and home_wifi_ssid to your work and home wifi name
+  The script spits out your ssid to /tmp/wifi_ssid
 * If you have more than one pair of airpods then this could help
-  * At the bottom of right_icons.sh right_icons_macos.sh there's a string search
-    for your airpod name and if it matches it puts an icon next to the headphone glyph
+  At the bottom of right_icons.sh right_icons_macos.sh there's a string search
+  for your airpod name and if it matches it puts an icon next to the headphone glyph
+
 
 Let me know what you come up with
 ---------------------------------
