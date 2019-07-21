@@ -46,13 +46,12 @@ I don't think you need to for this...
 Let me know what you come up with
 ---------------------------------
 
-Let me know what you come up with. Hopefully this should get you started customzing tmux
+I don't ever put code up on github but I wanted to share it with @christoomey and @changemewtf (Chris and Max)
+So forgive whatever dumb stuff I did on these.
 
-If anyone wants me to, I can create an install.sh that installs the latest tmux, nerdfonts,
-walks you thorugh customizing and automatically adjusts your tmux.conf
+If anyone finds it useful, let me know what you come up with.
 
 Jason Cox<jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
-
 
 .. _tmux: https://github.com/tmux/tmux
 .. _nerdfonts: https://www.nerdfonts.com/
