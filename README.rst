@@ -93,6 +93,7 @@ Notes about the image / other random notes
 * It does this only by the window name that you set using C-,
 * For python virtual environments if you name your window something like e: vim settings it will show
   a python virtual environment glyph before the shell glyph indicating that you're in a venv
+  followed by the vim glyph
 
 
 Example Image
