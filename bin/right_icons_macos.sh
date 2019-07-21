@@ -50,7 +50,7 @@ fi
 now="$(date +%s)"
 batt_txt_sec_mod="$(expr $now - $batt_txt_mod)"
 audio_txt_sec_mod="$(expr $now - $audio_txt_mod)"
-refresh=10
+refresh=15
 
 on_vpn="$(ifconfig | grep 'utun1')"
 if [[ "x" == "${on_vpn}x" ]]; then
@@ -76,7 +76,7 @@ if [ ! -f $audio_txt_file ] || [ $audio_txt_sec_mod -gt $refresh ]; then
     update_audio_txt
 fi
 
-plug_status="$(cat $batt_txt_file |grep 'AC Power')"
+plugged_in="$(cat $batt_txt_file |grep 'AC Power')"
 percentage="$(cat $batt_txt_file | grep 'InternalBattery' |awk '{print $3}' | sed 's/[^0-9]//g')"
 batt_icon=""
 power_plug_icon=""
@@ -104,8 +104,8 @@ elif [[ $percentage -gt 99 ]] || [[ $percentage -eq 99 ]]; then
 fi
 
 
-if [ -z $plug_status ]; then
-    power_icons=" ${power_batt_icon} ${batt_icon}"
+if [[ "${plugged_in}x" == "x" ]]; then
+    power_icons=" ${batt_icon}"
 else
     if [[ $percentage -lt 21 ]]; then
         batt_icon=""

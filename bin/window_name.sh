@@ -227,7 +227,6 @@ if [[ $window_name == *"rngr"* ]] || [[ $window_name == *"ranger" ]]; then
 fi
 
 # Code / Configurations
-
 if [[ $window_name == *" code" ]] || [[ $window_name == "code" ]]; then
     icons="${icons} ${devcode_icon}"
 fi
