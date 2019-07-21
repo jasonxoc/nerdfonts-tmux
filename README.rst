@@ -8,13 +8,13 @@ by creating a ~/.tmux_session_names and ~/.tmux_window_names
 
 Note: These glyphs don't show up on the web
 
-Example ~/.tmux_session_names
------------------------------
-project| project
+:: Example ~/.tmux_session_names:
 
-Example ~/.tmux_window_names
-----------------------------
-tmux conf| tmux conf
+   project| project
+
+:: Example ~/.tmux_window_names
+
+   tmux conf| tmux conf
 
 
 I just open up the nerdfonts_ website and search for glyphs to style tmux windows and sessions
@@ -76,6 +76,19 @@ It ended up being hyper irritating. So for your convienience:
 .. _LiterationTTF: https://github.com/jasonxoc/nerdfonts-tmux/blob/master/fonts/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true
 
 
+Notes about the image / other random notes
+------------------------------------------
+
+* Shows an icon that represents the charge of your battery
+* I put a bunch of default window icon representations in window_name.sh
+* You see an example of being sshed into a server, it has a different sh icon
+* The bash window is the default shell icon
+* There are different active state glyphs used when it felt better to me
+* You'll notice on the ssh mysql1 tab that the window is ssh'ed into a db server that's mysql
+* vim tmux scripts window shows that it's running vim
+* It does this only by the window name that you set using C-,
+* For python virtual environments if you name your window something like e: vim settings it will show
+  a python virtual environment glyph before the shell glyph indicating that you're in a venv
 
 
 Example Image
