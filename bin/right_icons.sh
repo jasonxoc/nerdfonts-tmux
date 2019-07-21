@@ -33,7 +33,7 @@ batt_txt_file=/tmp/tmux_batt.txt
 
 if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport ]; then
     airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
-    wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk '{print $2}')"
+    wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk -F':' '{print $2}')"
     batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
     audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
 fi
@@ -129,13 +129,10 @@ if [[ "${wifi_ssid}x" == "x" ]]; then
 fi
 
 
-
-echo $wifi_ssid > /tmp/wifi_ssid
+echo "Wifi ssid (without single quotes): '${wifi_ssid}'" > /tmp/wifi_ssid
 if [[ $wifi_ssid == $wofk_wifi_ssid ]]; then
     network_icon="${network_icon} ${work_wifi_icon}"
-fi
-
-if [[ $wifi_ssid == $home_wifi_ssid ]]; then
+elif [[ $wifi_ssid == $home_wifi_ssid ]]; then
     network_icon="${network_icon} ${home_wifi_icon}"
 fi
 
