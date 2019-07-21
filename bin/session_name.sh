@@ -10,13 +10,6 @@
 # # # # # # # # # #
 
 session_name="$1"
-sh_icon=""
-ssh_icon=""
-vim_icon=""
-conf_icon=""
-ssh_icon=""
-python_icon=""
-icons=$sh_icon
 return_string=$session_name
 if [ -f ~/.tmux_session_names ]; then
     while read session_row;
