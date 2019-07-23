@@ -132,9 +132,9 @@ if [[ "${wifi_ssid}x" == "x" ]]; then
 fi
 
 echo "Wifi ssid (without single quotes): '${wifi_ssid}'" > /tmp/wifi_ssid
-if [[ $wifi_ssid == $work_wifi_ssid ]]; then
+if [[ $wifi_ssid == *"$work_wifi_ssid" ]]; then
     network_icon="${network_icon} ${work_wifi_icon}"
-elif [[ $wifi_ssid == $home_wifi_ssid ]]; then
+elif [[ $wifi_ssid == *"$home_wifi_ssid" ]]; then
     network_icon="${network_icon} ${home_wifi_icon}"
 fi
 
