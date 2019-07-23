@@ -32,8 +32,8 @@
 work_wifi_icon=""
 home_wifi_icon=""
 
-work_wifi_ssid="Work Wifi SSID"
-home_wifi_ssid="Home Wifi SSID"
+home_wifi_ssid="$1"
+work_wifi_ssid="$2"
 
 feature_airpods=1
 
