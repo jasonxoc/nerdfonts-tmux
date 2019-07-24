@@ -1,4 +1,4 @@
-#!/usr/bin/env /bin/bash
+#!/usr/bin/env bash
 
 # # # # # # # # # #
 # Orginal Author: Jason Cox <jasonxoc@gmail.com> https://www.linkedin.com/in/jason-cox-98444748/
