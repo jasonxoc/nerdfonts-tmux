@@ -1,9 +1,10 @@
 nerdfonts_ enabled tmux_
 ========================
 
-(Search for new)[https://www.nerdfonts.com/cheat-sheet]
-
+NOTE: This is only tested on Khali linux and MacOS.
 Set of scripts that styles tmux using nerdfonts.
+
+(Search for new glyphs)[https://www.nerdfonts.com/cheat-sheet]
 
 You can customize your own session names and window names
 by creating a ~/.tmux_session_names and ~/.tmux_window_names
