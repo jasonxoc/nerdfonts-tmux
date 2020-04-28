@@ -1,6 +1,8 @@
 nerdfonts_ enabled tmux_
 ========================
 
+(Search for new)[https://www.nerdfonts.com/cheat-sheet]
+
 Set of scripts that styles tmux using nerdfonts.
 
 You can customize your own session names and window names
@@ -8,11 +10,13 @@ by creating a ~/.tmux_session_names and ~/.tmux_window_names
 
 Note: These glyphs don't show up on the web
 
-:: Example ~/.tmux_session_names:
+
+Examples
+:: ~/.tmux_session_names
 
    project| project
 
-:: Example ~/.tmux_window_names
+:: ~/.tmux_window_names
 
    tmux conf| tmux conf
 

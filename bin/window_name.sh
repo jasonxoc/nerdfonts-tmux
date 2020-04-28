@@ -6,6 +6,7 @@
 # Rep: https://github.com/jasonxoc/nerdfonts-tmux
 #
 # Notes: This is made for me, uses macos commands
+#      : Search: https://www.nerdfonts.com/cheat-sheet
 #
 # # # # # # # # # #
 

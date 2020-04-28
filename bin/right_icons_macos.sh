@@ -7,6 +7,8 @@
 #
 # Notes: This is made for me, uses macos commands
 #
+#      : Icon Search: https://www.nerdfonts.com/cheat-sheet
+#
 # # # # # # # # # #
 #  
 # battery_icons:            
