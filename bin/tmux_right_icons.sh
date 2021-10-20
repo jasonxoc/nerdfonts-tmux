@@ -6,8 +6,8 @@
 # Rep: https://github.com/jasonxoc/nerdfonts-tmux
 #
 # Notes: This is made for me, uses macos commands
-#
 #      : Icon Search: https://www.nerdfonts.com/cheat-sheet
+
 #
 # # # # # # # # # #
 #  
@@ -32,9 +32,10 @@
 #
 ##
 
-if [ -n $SSH_CLIENT ];
-	echo " $(hostname)"
-	exit
+# Test if we're ssh'ed into a server
+if [[ ! -z $SSH_CLIENT ]]; then
+    echo " $(hostname)"
+    exit
 fi
 
 work_wifi_icon=""
@@ -71,8 +72,8 @@ else
 fi
 
 function update_batt_txt {
-    if [ command -v pmset >/dev/null ]
-	    pmset -g batt > /tmp/tmux_batt.txt
+    if [ command -v pmset >/dev/null ]; then
+       pmset -g batt > /tmp/tmux_batt.txt
     fi
 }
 
@@ -81,9 +82,9 @@ if [ ! -f $batt_txt_file ] || [ $batt_txt_sec_mod -gt $refresh ] ; then
 fi
 
 function update_audio_txt {
-    if [ command -v system_profiler >/dev/null ]
-	    system_profiler SPAudioDataType > /tmp/tmux_audio.txt
-	    system_profiler SPBluetoothDataType > /tmp/tmux_bluetooth.txt
+    if [ command -v system_profiler >/dev/null ]; then
+        system_profiler SPAudioDataType > /tmp/tmux_audio.txt
+        system_profiler SPBluetoothDataType > /tmp/tmux_bluetooth.txt
     fi
 }
 
@@ -91,8 +92,14 @@ if [ ! -f $audio_txt_file ] || [ $audio_txt_sec_mod -gt $refresh ]; then
     update_audio_txt
 fi
 
-plugged_in="$(cat $batt_txt_file |grep 'AC Power')"
-percentage="$(cat $batt_txt_file | grep 'InternalBattery' |awk '{print $3}' | sed 's/[^0-9]//g')"
+if [ -f $batt_txt_file ]; then
+    plugged_in="$(cat $batt_txt_file |grep 'AC Power')"
+    percentage="$(cat $batt_txt_file | grep 'InternalBattery' |awk '{print $3}' | sed 's/[^0-9]//g')"
+else
+    plugged_in=""
+    percentage=""
+fi
+
 batt_icon=""
 power_plug_icon=""
 unread_msg_icon="﬐"
