@@ -32,6 +32,18 @@
 #
 ##
 
+aws_icon=""
+conf_icon=""
+work_wifi_icon=""
+home_wifi_icon=""
+
+batt_icon=""
+power_plug_icon=""
+unread_msg_icon="﬐"
+vpn_icon=""
+
+network_icon=""
+
 # Show hostname of server sshed scrolling
 HOSTNAME_MAX_LENGTH=25
 HOSTNAME=$(hostname)
@@ -52,13 +64,13 @@ if [[ ! -z $SSH_CLIENT ]]; then
             TMUX_HOSTNAME_STR=$(echo $HOSTNAME | cut -c1-${HOSTNAME_MAX_LENGTH})
         fi
     fi
-    echo " $TMUX_HOSTNAME_STR"
+    HOSTNAME_ICONS=""
+    [[ $HOSTNAME == *".compute.internal" ]] && HOSTNAME_ICONS="${HOSTNAME_ICONS} ${aws_icon}"
+    echo "${HOSTNAME_ICONS} ${TMUX_HOSTNAME_STR}"
     echo $TMUX_HOSTNAME_SUBSTR > $HOSTNAME_FILEVAR
     exit
 fi
 
-work_wifi_icon=""
-home_wifi_icon=""
 
 home_wifi_ssid="$1"
 work_wifi_ssid="$2"
@@ -113,9 +125,6 @@ else
     percentage=""
 fi
 
-batt_icon=""
-power_plug_icon=""
-unread_msg_icon="﬐"
 unread_chats=0
 
 #echo "Bat Perc: $percentage" >> /tmp/batt
@@ -162,7 +171,6 @@ else
     power_icons=" ${power_plug_icon} ${batt_icon}"
 fi
 
-network_icon=" "
 if [[ "${wifi_ssid}x" == "x" ]]; then
     network_icon=""
 fi

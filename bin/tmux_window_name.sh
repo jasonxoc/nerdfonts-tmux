@@ -22,9 +22,6 @@ session_name="$3"
 active_window="$4"
 unique_name="${session_name}-${window_number}"
 
-if [[ ! -z $feature_debug && $feature_debug -gt 0 ]]; then
-	echo "win number: $window_number win name: $window_name session name: $session_name active: $active_window" >> /tmp/tmux_debug.txt
-fi
 
 # Vim
 vim_icon=""
@@ -69,6 +66,7 @@ aws_icon_alt=""
 angular_icon=""
 bing_icon=""
 bootstrap_icon=""
+bash_icon=""
 
 
 finder_icon=""
@@ -170,14 +168,12 @@ if [[ $active_window -gt 0 ]]; then
 fi
 
 icons=$sh_icon
-if [[ $window_name == "git" ]]; then
-    window_name="$git_icon $window_name"
-fi
+[[ $window_name == "git" ]] && window_name="$git_icon $window_name"
 
 # Python Environments
 if [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]]; then
-    vim_icon=${vim_box_icon}
-    icons="$python_icon $icons"
+   vim_icon=${vim_box_icon}
+   icons="$python_icon $icons"
 fi
 
 
@@ -185,9 +181,7 @@ fi
 if [[ $window_name == *"ssh"* ]]; then
     vim_icon=${vim_box_icon}
     icons="${ssh_icon}"
-    if [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]]; then
-        icons="${python_icon} ${ssh_icon}"
-    fi
+    [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]] && icons="${python_icon} ${ssh_icon}"
 fi
 
 
@@ -200,23 +194,14 @@ if [[ ! -z $feature_db ]]; then
     elif [[ $window_name == *"db" ]]; then
         icons="${db_icon} $icons"
     fi
-    if [[ $window_name == *"solr"* ]]; then
-        icons="${icons} ${solr_icon}"
-    fi
-    if [[ $window_name == *"redis"* ]]; then
-        icons="${icons} ${redis_icon}"
-    fi
-    if [[ $window_name == *"mongo"* ]]; then
-        icons="${icons} ${mongo_icon}"
-    fi
+    [[ $window_name == *"solr"* ]] && icons="${icons} ${solr_icon}"
+    [[ $window_name == *"redis"* ]] && icons="${icons} ${redis_icon}"
+    [[ $window_name == *"mongo"* ]] && icons="${icons} ${mongo_icon}"
 fi
 
 
 # Editors
-if [[ $window_name == *"vim"* ]] || [[ $window_name == *"vi" ]]; then
-    icons="${icons} ${vim_icon}"
-fi
-
+[[ $window_name == *"vim"* || $window_name == *"vi" ]] && icons="${icons} ${vim_icon}"
 
 # Chat / Messaging
 if [[ $window_name == *"discord"* ]] || [[ $window_name == *"dscd"* ]]; then
@@ -226,65 +211,33 @@ elif [[ $window_name == *"irc"* ]] || [[ $window_name == *" chat"* ]] || [[ $win
 fi
 
 # File Managers
-if [[ $window_name == *"rngr"* ]] || [[ $window_name == *"ranger" ]]; then
-    icons="${icons} ${finder_icon}"
-fi
+[[ $window_name == *"rngr"* || $window_name == *"ranger" ]] && icons="${icons} ${finder_icon}"
 
 # Code / Configurations
-if [[ $window_name == *" code" ]] || [[ $window_name == "code" ]]; then
-    icons="${icons} ${devcode_icon}"
-fi
-if [[ $window_name == *" log" ]] || [[ $window_name == *"logs" ]]; then
-    icons="${icons} ${log_icon}"
-fi
-
-if [[ $window_name == *"conf" ]] || [[ $window_name == *"etc"* ]] || [[ $window_name == *"dotfiles" ]] || [[ $window_name == *" conf"* ]]; then
-    icons="${icons} ${conf_icon}"
-fi
+[[ $window_name == *" code" || $window_name == "code" ]] && icons="${icons} ${devcode_icon}"
+[[ $window_name == *" log" || $window_name == *"logs" ]] && icons="${icons} ${log_icon}"
+[[ $window_name == *"conf" || $window_name == *"etc"* || $window_name == *"dotfiles" || $window_name == *" conf"* ]] && icons="${icons} ${conf_icon}"
 
 # Languages:
-if [[ $window_name == *"nvm"* ]] || [[ $window_name == *"node" ]]; then
-    icons="${icons} ${node_icon}"
-fi
-if [[ $window_name == *"js"* ]] || [[ $window_name == *"javascript"* ]]; then
-    icons="${icons} ${js_icon}"
-fi
+[[ $window_name == *"nvm"* || $window_name == *"node" ]] && icons="${icons} ${node_icon}"
+[[ $window_name == *"js"* || $window_name == *"javascript"* ]] && icons="${icons} ${js_icon}"
 
-if [[ $window_name == *"java"* ]]; then
-    icons="${icons} ${java_icon}"
-fi
-
-if [[ $window_name == *"ruby"* ]]; then
-    icons="${icons} ${ruby_icon}"
-fi
-if [[ $window_name == *"rails" ]]; then
-    icons="${icons} ${ruby_icon}"
-fi
-
-if [[ $window_name == *"php"* ]]; then
-    icons="${icons} ${php_icon}"
-fi
-if [[ $window_name == *"css"* ]] || [[ $window_name == *"style" ]]; then
-    icons="${icons} ${css_icon}"
-fi
+[[ $window_name == *"java"* ]] && icons="${icons} ${java_icon}"
+[[ $window_name == *"ruby"* ]] && icons="${icons} ${ruby_icon}"
+[[ $window_name == *"rails" ]] && icons="${icons} ${ruby_icon}"
+[[ $window_name == *"php"* ]] && icons="${icons} ${php_icon}"
+[[ $window_name == *"css"* || $window_name == *"style" ]] && icons="${icons} ${css_icon}"
+[[ $window_name == *".sh"* ]] && icons="${icons} ${bash_icon}"
 
 # MVC Coding
 if [[ ! -z $feature_mvc ]]; then
-    if [[ $window_name == *"model"* ]] || [[ $window_name == *" mdl"* ]]; then
-        icons="${icons} ${mode_icon}"
-    fi
-    if [[ $window_name == *" cont"* ]] || [[ $window_name == *"controller"* ]]; then
-        icons="${icons} ${controller_icon}"
-    fi
-    if [[ $window_name == *"tpl"* ]] || [[ $window_name == *" view"* ]] || [[ $window_name == *"html"* ]]; then
-        icons="${icons} ${view_icon}"
-    fi
+    [[ $window_name == *"model"* || $window_name == *" mdl"* ]] && icons="${icons} ${mode_icon}"
+    [[ $window_name == *" cont"* || $window_name == *"controller"* ]] && icons="${icons} ${controller_icon}"
+    [[ $window_name == *"tpl"* || $window_name == *" view"* || $window_name == *"html"* ]] && icons="${icons} ${view_icon}"
 fi
 
 # Platforms
-if [[ $window_name == *"aws" ]] || [[ $window_name == *"amzn"* ]]; then
-    icons="${icons} ${aws_icon}"
-fi
+[[ $window_name == *"aws" || $window_name == *"amzn"* ]] && icons="${icons} ${aws_icon}"
 
 # Force window name
 # ~/.tmux_window_names: search|replace
@@ -295,17 +248,15 @@ if [ ! -z $feature_force ]; then
         while read test_window_name;
         do
             test_string="$(echo $test_window_name | awk -F'|' '{print $1}')"
-            if [[ $window_name == $test_string ]]; then
-                force_window_name="$(echo $test_window_name | awk -F'|' '{print $2}')"
-            fi
+            [[ $window_name == $test_string ]] && force_window_name="$(echo $test_window_name | awk -F'|' '{print $2}')"
         done < ~/.tmux_window_names
     fi
 fi
 
-if [[ "${force_window_name}x" != "x" ]]; then
-    echo $force_window_name
-else
-    echo "$icons $window_name"
-fi
+[[ ! -z $force_window_name ]] && window_name=$force_window_name || window_name="$icons $window_name"
 
+[[ $feature_debug -gt 0 ]] && \
+    echo "win number: $window_number win name: $window_name session name: $session_name active: $active_window : ${window_name}" >> /tmp/tmux_debug.txt
+
+echo $window_name
 
