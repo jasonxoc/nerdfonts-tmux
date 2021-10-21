@@ -32,9 +32,28 @@
 #
 ##
 
+# Show hostname of server sshed scrolling
+HOSTNAME_MAX_LENGTH=25
+HOSTNAME=$(hostname)
+HOSTNAME_FILEVAR=/tmp/tmux_hostname.txt
 # Test if we're ssh'ed into a server
 if [[ ! -z $SSH_CLIENT ]]; then
-    echo " $(hostname)"
+    [[ ! -f $HOSTNAME_FILEVAR ]] && echo "$(hostname)" > $HOSTNAME_FILEVAR
+    TMUX_HOSTNAME=$(cat $HOSTNAME_FILEVAR)
+    TMUX_HOSTNAME_LENGTH=${#TMUX_HOSTNAME}
+    HOSTNAME_LENGTH=${#HOSTNAME}
+    TMUX_HOSTNAME_STR=$TMUX_HOSTNAME
+    if [[ $HOSTNAME_LENGTH -gt $HOSTNAME_MAX_LENGTH ]]; then
+        if [[ $TMUX_HOSTNAME_LENGTH -gt $HOSTNAME_MAX_LENGTH ]]; then
+            TMUX_HOSTNAME_SUBSTR=$(echo $TMUX_HOSTNAME |cut -c2-${HOSTNAME_LENGTH})
+            TMUX_HOSTNAME_STR=$(echo $TMUX_HOSTNAME | cut -c2-${HOSTNAME_MAX_LENGTH})
+        else
+            TMUX_HOSTNAME_SUBSTR=$(echo $HOSTNAME |cut -c1-${HOSTNAME_LENGTH})
+            TMUX_HOSTNAME_STR=$(echo $HOSTNAME | cut -c1-${HOSTNAME_MAX_LENGTH})
+        fi
+    fi
+    echo " $TMUX_HOSTNAME_STR"
+    echo $TMUX_HOSTNAME_SUBSTR > $HOSTNAME_FILEVAR
     exit
 fi
 
@@ -65,16 +84,10 @@ audio_txt_sec_mod="$(expr $now - $audio_txt_mod)"
 refresh=15
 
 on_vpn="$(ifconfig | grep 'utun1')"
-if [[ "x" == "${on_vpn}x" ]]; then
-    vpn_icon=""
-else
-    vpn_icon=" "
-fi
+[[ -z "$on_vpn" ]] && vpn_icon="" || vpn_icon=" "
 
 function update_batt_txt {
-    if [ command -v pmset >/dev/null ]; then
-       pmset -g batt > /tmp/tmux_batt.txt
-    fi
+    [ command -v pmset >/dev/null ] && pmset -g batt > /tmp/tmux_batt.txt
 }
 
 if [ ! -f $batt_txt_file ] || [ $batt_txt_sec_mod -gt $refresh ] ; then
