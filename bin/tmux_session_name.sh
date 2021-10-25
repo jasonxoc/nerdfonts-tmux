@@ -12,11 +12,10 @@
 
 
 session_name="$1"
-feature_debug="1"
+feature_debug=1
+feature_force=1
 
-if [[ ! -z $feature_debug && $feature_debug -gt 0 ]]; then
-    echo "session name: $session_name" >> /tmp/tmux_debug.txt
-fi
+[[ ! -z $feature_debug && $feature_debug -gt 0 ]] && echo "session name: $session_name" >> /tmp/tmux_debug.txt
 
 # Vim
 vim_icon=""
@@ -155,4 +154,20 @@ evernote_icon=""
 
 
 
+# Force session name
+# ~/.tmux_session_names: search|replace
+session_name_str=$session_name
+if [ ! -z $feature_force ]; then
+    force_session_name=""
+    if [ -f ~/.tmux_session_names ]; then
+        while read test_session_name;
+        do
+            test_string="$(echo $test_session_name | awk -F'|' '{print $1}')"
+            [[ $session_name == $test_string ]] && force_session_name="$(echo $test_session_name | awk -F'|' '{print $2}')"
+        done < ~/.tmux_session_names
+    fi
+    [[ ! -z $force_session_name ]] && session_name_str=$force_session_name
+fi
+
+echo $session_name_str
 

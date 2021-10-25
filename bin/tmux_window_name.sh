@@ -128,6 +128,7 @@ view_icon=""
 view_icon_alt="ﰦ"
 templates_icon=""
 
+
 # Random Icons
 home_icon=""
 apps_icon=""
@@ -172,18 +173,16 @@ icons=$sh_icon
 
 # Python Environments
 if [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]]; then
-   vim_icon=${vim_box_icon}
+   vim_icon="${vim_box_icon}"
    icons="$python_icon $icons"
 fi
 
-
 # SSH
 if [[ $window_name == *"ssh"* ]]; then
-    vim_icon=${vim_box_icon}
+    vim_icon="${vim_box_icon}"
     icons="${ssh_icon}"
     [[ $window_name == "e:"* ]] || [[ $window_name == "e-"* ]] && icons="${python_icon} ${ssh_icon}"
 fi
-
 
 # Databases
 if [[ ! -z $feature_db ]]; then
@@ -198,7 +197,6 @@ if [[ ! -z $feature_db ]]; then
     [[ $window_name == *"redis"* ]] && icons="${icons} ${redis_icon}"
     [[ $window_name == *"mongo"* ]] && icons="${icons} ${mongo_icon}"
 fi
-
 
 # Editors
 [[ $window_name == *"vim"* || $window_name == *"vi" ]] && icons="${icons} ${vim_icon}"
@@ -221,12 +219,12 @@ fi
 # Languages:
 [[ $window_name == *"nvm"* || $window_name == *"node" ]] && icons="${icons} ${node_icon}"
 [[ $window_name == *"js"* || $window_name == *"javascript"* ]] && icons="${icons} ${js_icon}"
+[[ $window_name == *"css"* || $window_name == *"style" ]] && icons="${icons} ${css_icon}"
 
 [[ $window_name == *"java"* ]] && icons="${icons} ${java_icon}"
 [[ $window_name == *"ruby"* ]] && icons="${icons} ${ruby_icon}"
 [[ $window_name == *"rails" ]] && icons="${icons} ${ruby_icon}"
 [[ $window_name == *"php"* ]] && icons="${icons} ${php_icon}"
-[[ $window_name == *"css"* || $window_name == *"style" ]] && icons="${icons} ${css_icon}"
 [[ $window_name == *".sh"* ]] && icons="${icons} ${bash_icon}"
 
 # MVC Coding
@@ -254,7 +252,6 @@ if [ ! -z $feature_force ]; then
 fi
 
 [[ ! -z $force_window_name ]] && window_name=$force_window_name || window_name="$icons $window_name"
-
 [[ $feature_debug -gt 0 ]] && \
     echo "win number: $window_number win name: $window_name session name: $session_name active: $active_window : ${window_name}" >> /tmp/tmux_debug.txt
 
