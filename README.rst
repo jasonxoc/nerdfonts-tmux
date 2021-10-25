@@ -25,8 +25,8 @@ Examples
 I just open up the nerdfonts_ website and search for glyphs to style tmux windows and sessions
 
 These are my personalized scripts.
-I use macos, so all of the right_icons_macos.sh are tested using macos 10.14.4
-If you have a distro, add it in bin/right_icons_{platform_name}.sh and I'll merge it.
+I use macos, so all of the tmux_right_icons.sh are tested using macos 10.14.4
+If you have a distro, add it in bin/tmux_right_icons{platform_name}.sh and I'll merge it.
 
 
 Setup
@@ -44,14 +44,14 @@ I don't think you need to for this...
    * Change work_wifi_ssid and home_wifi_ssid to your work and home wifi name.
      The script spits out your ssid to /tmp/wifi_ssid
    * If you have more than one pair of airpods then this could help.
-     At the bottom of right_icons.sh right_icons_macos.sh there's a string search
+     At the bottom of tmux_right_icons.sh tmux_right_icons_macos.sh there's a string search
      for your airpod name and if it matches it puts an icon next to the headphone glyph
 
 * cp tmux_session_names ~/.tmux_session_names (if you want to easily style your
   session names)
 * cp tmux_window_names ~/.tmux_window_names (this completely replaces the window
   name with whatever you put in here. Meaning it will ignore the other substring
-  matches that window_names.sh does)
+  matches that tmux_window_names.sh does)
 
 
 Let me know what you come up with
@@ -90,7 +90,7 @@ Notes about the image / other random notes
 ------------------------------------------
 
 * Shows an icon that represents the charge of your battery
-* I put a bunch of default window icon representations in window_name.sh
+* I put a bunch of default window icon representations in tmux_window_names.sh
 * You see an example of being sshed into a server, it has a different sh icon
 * The bash window is the default shell icon
 * There are different active state glyphs used when it felt better to me
