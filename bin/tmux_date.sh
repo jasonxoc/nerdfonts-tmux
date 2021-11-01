@@ -21,7 +21,7 @@
 
 if [[ -n $1 && $1 -gt 0 ]]; then
     cars_per_line="$(tput cols)"
-    date_time="  $(date '+%a %l:%M')"
+    date_time=" $(date '+%a %l:%M')"
     date_time_aux="  $(date '+%a %m/%d%l:%M')"
     echo $date_time
 else
