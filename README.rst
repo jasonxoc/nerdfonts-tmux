@@ -95,6 +95,10 @@ It ended up being hyper irritating. So for your convienience:
 * BlinkSH supported Nerdfont base64 encoded in CSS: LiterationCss_
 - blink-sh/LiterationMonoNerdFont.css
 
+* On MacOS double click the font in the font dir
+  OR
+  cp fonts/*.ttf ~/Library/Fonts/
+
 .. _LiterationCss: https://raw.githubusercontent.com/jasonxoc/nerdfonts-tmux/master/blink-sh/LiterationMonoNerdFont.css
 .. _LiterationTTF: https://github.com/jasonxoc/nerdfonts-tmux/blob/master/fonts/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true
 
