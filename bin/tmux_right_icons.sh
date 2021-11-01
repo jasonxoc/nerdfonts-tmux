@@ -71,6 +71,27 @@ if [[ ! -z $SSH_CLIENT ]]; then
     exit
 fi
 
+audio_txt_file=/tmp/tmux_audio.txt
+batt_txt_file=/tmp/tmux_batt.txt
+bluetooth_txt_file=/tmp/tmux_bluetooth.txt
+
+function update_batt_txt {
+    if [ command -v pmset &> /dev/null ]; then
+        pmset -g batt > $batt_txt_file
+    else
+        touch $batt_txt_file
+    fi
+}
+
+function update_audio_txt {
+    if [ command -v system_profiler &>/dev/null ]; then
+        system_profiler SPAudioDataType > $audio_txt_file
+        system_profiler SPBluetoothDataType > $bluetooth_txt_file
+    else
+        touch $audio_txt_file
+        touch $bluetooth_txt_file
+    fi
+}
 
 home_wifi_ssid="$1"
 work_wifi_ssid="$2"
@@ -80,10 +101,14 @@ feature_airpods=0
 echo "arg1: ${home_wifi_ssid} arg2: ${work_wifi_ssid}" > /tmp/tmux_args.txt
 
 
-audio_txt_file=/tmp/tmux_audio.txt
-batt_txt_file=/tmp/tmux_batt.txt
 
 if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport ]; then
+    if [ ! -f $audio_txt_file ]; then
+        update_audio_txt
+    fi
+    if [ ! -f $batt_txt_file ]; then
+        update_batt_txt
+    fi
     airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
     wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk -F':' '{print $2}')"
     batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
@@ -98,20 +123,11 @@ refresh=15
 on_vpn="$(ifconfig | grep 'utun1')"
 [[ -z "$on_vpn" ]] && vpn_icon="" || vpn_icon=" "
 
-function update_batt_txt {
-    [ command -v pmset >/dev/null ] && pmset -g batt > /tmp/tmux_batt.txt
-}
 
-if [ ! -f $batt_txt_file ] || [ $batt_txt_sec_mod -gt $refresh ] ; then
+if [[ ! -f $batt_txt_file || $batt_txt_sec_mod -gt $refresh ]]; then
     update_batt_txt
 fi
 
-function update_audio_txt {
-    if [ command -v system_profiler >/dev/null ]; then
-        system_profiler SPAudioDataType > /tmp/tmux_audio.txt
-        system_profiler SPBluetoothDataType > /tmp/tmux_bluetooth.txt
-    fi
-}
 
 if [ ! -f $audio_txt_file ] || [ $audio_txt_sec_mod -gt $refresh ]; then
     update_audio_txt

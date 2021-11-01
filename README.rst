@@ -35,14 +35,27 @@ Setup
 I compiled the latest release of tmux_ from source. Version: 3.1
 I don't think you need to for this...
 
-* Copy the files from bin/ to ~/bin/
+* Link or copy the files from bin/ to ~/bin/
+  mkdir -p ~/bin
+  ln -s $(pwd)/bin/tmux_date.sh ~/bin/tmux_date.sh
+  ln -s $(pwd)/bin/tmux_user.sh ~/bin/tmux_user.sh
+  ln -s $(pwd)/bin/tmux_opts.sh ~/bin/tmux_opts.sh
+  ln -s $(pwd)/bin/tmux_window_name.sh ~/bin/tmux_window_name.sh
+  ln -s $(pwd)/bin/tmux_session_name.sh ~/bin/tmux_session_name.sh
+  ln -s $(pwd)/bin/tmux_right_icons.sh ~/bin/tmux_right_icons.sh
 * Make sure ~/bin is in your $PATH : export PATH=$PATH:~/bin
-* Combine your existing ~/.tmux.conf with the one here.
+  echo 'export PATH=$PATH:~/bin' >> ~/.bash_profile
+
+* Use the tmux.conf file provided:
+  mv ~/.tmux.conf ~/.tmux.conf.old
+  cp tmux.conf ~/.tmux.conf
+  OR
+  ln -s $(pwd)/tmux.conf ~/.tmux.conf
+
+* Or combine your existing ~/.tmux.conf with the one here.
   The status-left, status-right and window-status items call the scripts.
   Change them to whereever you put the shell scripts
 
-   * Change work_wifi_ssid and home_wifi_ssid to your work and home wifi name.
-     The script spits out your ssid to /tmp/wifi_ssid
    * If you have more than one pair of airpods then this could help.
      At the bottom of tmux_right_icons.sh tmux_right_icons_macos.sh there's a string search
      for your airpod name and if it matches it puts an icon next to the headphone glyph
@@ -51,7 +64,7 @@ I don't think you need to for this...
   session names)
 * cp tmux_window_names ~/.tmux_window_names (this completely replaces the window
   name with whatever you put in here. Meaning it will ignore the other substring
-  matches that tmux_window_names.sh does)
+  matches that tmux_window_name.sh does)
 
 
 Let me know what you come up with
@@ -82,6 +95,10 @@ It ended up being hyper irritating. So for your convienience:
 * BlinkSH supported Nerdfont base64 encoded in CSS: LiterationCss_
 - blink-sh/LiterationMonoNerdFont.css
 
+* On MacOS double click the font in the font dir
+  OR
+  cp fonts/*.ttf ~/Library/Fonts/
+
 .. _LiterationCss: https://raw.githubusercontent.com/jasonxoc/nerdfonts-tmux/master/blink-sh/LiterationMonoNerdFont.css
 .. _LiterationTTF: https://github.com/jasonxoc/nerdfonts-tmux/blob/master/fonts/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true
 
@@ -90,7 +107,7 @@ Notes about the image / other random notes
 ------------------------------------------
 
 * Shows an icon that represents the charge of your battery
-* I put a bunch of default window icon representations in tmux_window_names.sh
+* I put a bunch of default window icon representations in tmux_window_name.sh
 * You see an example of being sshed into a server, it has a different sh icon
 * The bash window is the default shell icon
 * There are different active state glyphs used when it felt better to me
