@@ -76,7 +76,7 @@ batt_txt_file=/tmp/tmux_batt.txt
 bluetooth_txt_file=/tmp/tmux_bluetooth.txt
 
 function update_batt_txt {
-    if [ command -v pmset &> /dev/null ]; then
+    if [ command -v pmset &>/dev/null ]; then
         pmset -g batt > $batt_txt_file
     else
         touch $batt_txt_file
@@ -110,7 +110,7 @@ if [ -f /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/
         update_batt_txt
     fi
     airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
-    wifi_ssid="$($airport --getinfo |grep ' SSID:' |awk -F':' '{print $2}')"
+    wifi_ssid="$($airport --getinfo |grep ' SSID:' |grep -v 'BSSID' |awk -F':' '{print $2}')"
     batt_txt_mod="$(stat -t +%s $batt_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
     audio_txt_mod="$(stat -t +%s $audio_txt_file | awk '{print $10}' | sed 's/[^0-9]//g' )"
 fi
@@ -120,8 +120,9 @@ batt_txt_sec_mod="$(expr $now - $batt_txt_mod)"
 audio_txt_sec_mod="$(expr $now - $audio_txt_mod)"
 refresh=15
 
-on_vpn="$(ifconfig | grep 'utun1')"
-[[ -z "$on_vpn" ]] && vpn_icon="" || vpn_icon=" "
+#on_vpn="$(ifconfig | grep 'utun1')"
+on_vpn=""
+[[ -z "$on_vpn" ]] && vpn_icon=" " || vpn_icon=" "
 
 
 if [[ ! -f $batt_txt_file || $batt_txt_sec_mod -gt $refresh ]]; then
@@ -192,11 +193,13 @@ if [[ "${wifi_ssid}x" == "x" ]]; then
 fi
 
 #echo "Wifi ssid (without single quotes): '${wifi_ssid}'" > /tmp/wifi_ssid
-if [[ $wifi_ssid == *"$work_wifi_ssid" ]]; then
-    network_icon="${network_icon} ${work_wifi_icon}"
-elif [[ $wifi_ssid == *"$home_wifi_ssid" ]]; then
-    network_icon="${network_icon} ${home_wifi_icon}"
-fi
+#if [[ $wifi_ssid == *"$work_wifi_ssid" ]]; then
+#    network_icon="${network_icon} ${work_wifi_icon}"
+#elif [[ $wifi_ssid == *"$home_wifi_ssid" ]]; then
+#    network_icon="${network_icon} ${home_wifi_icon}"
+#fi
+
+network_icon="${network_icon} ${home_wifi_icon}"
 
 chats_icons=""
 if [ $unread_chats -gt 0 ]; then
