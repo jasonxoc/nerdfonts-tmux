@@ -20,10 +20,8 @@
 
 
 if [[ -z $1 ]]; then
-    cars_per_line="$(tput cols)"
-    date_time="  $(date '+%a %l:%M')"
-    date_time_aux="  $(date '+%a %m/%d%l:%M')"
-    echo $date_time
+    user_str=" $(whoami) "
+    echo $user_str
 else
-    echo "Arg: $1"
+    echo " $1 "
 fi
